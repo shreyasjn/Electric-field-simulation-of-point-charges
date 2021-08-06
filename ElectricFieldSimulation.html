@@ -1,0 +1,500 @@
+<html>
+<head>
+  <title>Electric field simulation</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+<style type="text/css">
+  .RL9{
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+  }
+  .Shreyas{
+    color: white;
+  }
+  .wrap {
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: 'Open Sans', sans-serif;
+  font-style: bold;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: bold;
+  color: #313133;
+  background: #4FD1C5;
+background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  border: none;
+  border-radius: 100px;
+  box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 0px;
+  }
+
+button::before {
+content: '';
+  border-radius: 100px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #00FFCB;
+  box-shadow: 0 0 60px rgba(0,255,203,.64);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #00FFCB;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+  }
+  100% {
+    width: 0px;
+    height: 0px;
+    opacity: 0;
+  }
+}
+  #error{
+    color: white;
+    padding-right: 40px;
+    font-size: 35px;
+    font-family: 'Open Sans';
+  }
+  .lewandowski{
+    background: linear-gradient(rgb(47,150,163), rgb(48,62,143));
+    padding: 5px;
+    margin: 5px;
+  }
+  article{
+    background-color: transparent;
+    padding: 5px;
+  }
+  #img1{
+    border: 2px solid white;
+  }
+ canvas{
+  border: 2px solid white;
+ }
+.topnav {
+  overflow: hidden;
+  background-color: black;
+  border: 2px solid #4FD1C5;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  text-align: center;
+  padding: 20px 110px;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Open Sans';
+  font-weight: bold;
+  border-bottom: 3px solid transparent;
+  color: #4FD1C5;
+}
+
+.topnav a:hover {
+  border-bottom: 3px solid #4FD1C5;
+}
+
+.topnav a.active {
+  border-bottom: 3px solid #4FD1C5;
+}
+  h1{
+     color: white;
+    text-align: center;
+    margin: 30px;
+    /*text-shadow: 1px 1px 1px cyan;*/
+    font-family: 'Zen Dots';
+    
+  }
+  p{
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans';
+  }
+  .gnabry{
+    background-color: transparent;
+  }
+  h3{
+    color: white;
+    text-align: center;
+    margin: 30px;
+    border: 2px solid white;
+    border-radius: 1000px;
+
+  }
+  h2{
+    color: white;
+    padding-right: 40px;
+    font-size: 35px;
+    font-family: 'Open Sans';
+  }
+  .aim1{
+    color: white;
+    text-align: center;
+  }
+  body{
+background-image: url('https://sm.mashable.com/mashable_in/photo/default/nasa-galaxy_9pu4.jpg');
+/*http://www.baltana.com/files/wallpapers-2/Black-Powerpoint-Background-HD-Images-06687.jpg
+https://cdn.wallpapersafari.com/84/95/UkvHln.jpg*/
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  border: 4px solid white;
+}
+.mySlides {
+  display:none;
+}
+/*.button {
+  display: inline-block;
+  border-radius: 20px;
+  background-color: #008080;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}*/
+input[type=button], input[type=submit], input[type=file] {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+textarea{
+  width: 200px;
+  height: 40px;
+  border: 3px solid #cccccc;
+  padding: 0px;
+  font-family: "Times New Roman", Times, serif;
+  background-color: transparent;
+  color: white;
+}
+#right{    
+ text-align: center;  
+margin-top:0px;
+ }
+
+.text{
+
+text-align:left;
+color: white;
+font-size: 18px;
+margin-top:-20px;
+margin: 20px;
+
+}
+</style>
+</head>
+<center>
+<body onload="setup()"><center><h1>EMT FINAL PROJECT<br> BY SHORYA KUMAR AND SHREYAS JAIN</h1>
+<h3>Shorya Kumar -2K19/EC/182<br>Shreyas Jain -2K19/EC/183</h3>
+  <div class="topnav">
+  <a class="active" href="#Aim">Aim</a>
+  <a href="#Introduction">Introduction</a>
+  <a href="#FutureProspects">Future prospects</a>
+  <a href="#Home">Home</a>
+</div>
+  
+  <div id ="right">  <br>
+<img src="https://upload.wikimedia.org/wikipedia/en/b/b5/DTU%2C_Delhi_official_logo.png" width="200">  
+</div><br>
+  <canvas id="canvas" width="800" height="800"></canvas><br><br>
+  <textarea id="input"></textarea>
+  <div class="wrap">
+  <button class="button" id="btn"><span>Submit</span></button>
+</div>
+<p class="Shreyas">Electric Field x coordinate: <input type="text" class = "RL9" id="x-coordinate2" value=""></p>
+<p class="Shreyas">Electric Field y coordinate: <input type="text" class = "RL9" id="y-coordinate2" value=""></p>
+<p class="Shreyas">Value: <input type="text" class = "RL9" id="charge-value" value=""></p><br>
+<button class ="button" onclick="myFunction3()">Add charge</button><br><br><br>
+<button class ="button" onclick="myFunction4()">Draw charge</button>
+<p class="Shreyas">Electric Field x coordinate: <input type="text" class = "RL9" id="x-coordinate" value=""></p>
+<p class="Shreyas">Electric Field y coordinate: <input type="text" class = "RL9" id="y-coordinate" value=""></p><br><br>
+<button class ="button" onclick="myFunction()">Electric field</button>
+<p class="Shreyas">Electric Potential x coordinate: <input class = "RL9" type="text" id="x-coordinate1" value=""></p>
+<p class="Shreyas">Electric Potential y coordinate: <input type="text" class = "RL9" id="y-coordinate1" value=""></p><br><br>
+<button class ="button" onclick="myFunction2()">Electric Potential</button>
+
+<!--<button class="button" id="btn" style="vertical-align:middle"><span>Submit</span></button>-->
+  <center><h2 id="error"></h2></center><br><br>
+  <a name="Aim"></a>
+  <article>
+  <div class="lewandowski" id="uh"> 
+  <h2 id="aim1">Aim of our project</h2>
+  <div class="lewandowski" id="yh">
+  <p>The aim of our project is to create an interactive user interface to simulate electric charges , their potential , their net electric field at any point on the whole canvas so that it acts as an interactive medium when kids try to practically look at how charges behave in real life. It can be used as a medium of study during this pandemic.It is designed to awaken interest in Science towards students of various standards.</p></div></div><br>
+  <center>
+    <div class="gnabry">
+    <div class="w3-content w3-section" style="max-width:500px">
+  <img class="mySlides" src="https://i.ytimg.com/vi/H6lb46AiXHQ/maxresdefault.jpg" style="width:100%">
+  <img class="mySlides" src="https://www.therightgate.com/wp-content/uploads/2019/06/Electric-field-intensity.jpg" style="width:100%">
+  <img class="mySlides" src="https://learn-resources.concord.org/images/stem-resources/icons/electric-potential-energy-2.jpg" style="width:100%">
+</div></div>
+</center><br>
+  <a name="Introduction"></a>
+  <div class="lewandowski" id="bn">
+  <h2 id="aim3">Introduction</h2>
+  <div class="lewandowski" id="an">
+  <p>Electric charges produce an electric field which is a vector quantity at any and every particular point in space .We have created an interactive and visually apealing User Interface for students in various grades to be able to visualize the working of charges in a 2-D plane and various other properties that they bring with them like electric field and electric potential.</p></div></div><br> 
+  <div class="gnabry">
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/VFbyDCG_j18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br></div>
+  <a name="FutureProspects"></a>
+  <div class="lewandowski" id="kl">
+  <h2 id="aim2">Future Prospects</h2>
+  <div class="lewandowski" id="lk">
+  <p>After the completition of this project we also plan to take it a step further and add more functionalities, a better user interface , and overall just try to improve our current progress and try to develop a mobile application for the same.</p></div></div><br> 
+   
+
+  <b><p class="text">Special thanks to M.ganesh Sir for making this project possible <br><br>Project made by Shreyas Jain(2K19/EC/183) and Shorya Kumar(2K19/EC/182)</p></b>
+  </article>
+</body>
+</center>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#uh").click(function(){
+      $("#yh").slideToggle(1000)
+    });
+  });
+
+  $(document).ready(function(){
+    $("#bn").click(function(){
+      $("#an").slideToggle(1000)
+    });
+  });
+    $(document).ready(function(){
+    $("#kl").click(function(){
+      $("#lk").slideToggle(1000)
+    });
+  });
+  var charges = [];
+  function myFunction4(){
+    draw();
+  }
+   function myFunction3(){
+         add_charge(parseInt(document.getElementById("charge-value").value), parseInt(document.getElementById("x-coordinate2").value),parseInt(document.getElementById("y-coordinate2").value));
+         
+   }
+   function myFunction2(){
+          calculate_net_electric_potential(parseInt(document.getElementById("x-coordinate1").value),parseInt(document.getElementById("y-coordinate1").value));
+  }
+  function myFunction(){
+          calculate_net_electric_field(parseInt(document.getElementById("x-coordinate").value),parseInt(document.getElementById("y-coordinate").value));
+  }
+
+  function add_charge(charge_magnitude,x_coordinate, y_coordinate) {
+    charges.push({
+      magnitude: charge_magnitude,
+      x: x_coordinate,
+      y: y_coordinate
+    });
+  }
+
+  function calculate_net_electric_field(x_pos, y_pos,f=0) {
+    var k = 8.99 * 10 ** 9;
+    var e_net_x = 0;
+    var e_net_y = 0;
+    for(var i = 0; i < charges.length; i++) {
+      var dy = charges[i].y - y_pos;
+      var dx = charges[i].x - x_pos;
+      var e_x = k * charges[i].magnitude / Math.pow((dx**2 + dy ** 2),1.5) * dx;
+      var e_y = k * charges[i].magnitude / Math.pow((dx**2 + dy ** 2),1.5) * dy;
+      e_net_x = e_net_x + e_x;
+      e_net_y = e_net_y + e_y;;
+    }
+
+
+	if(f==0)document.getElementById("error").innerHTML = "Electric field at("+ x_pos.toString() + "," + y_pos.toString() +  ") = " + e_net_x.toString() +"i  + " + e_net_y.toString() + "j";
+    return [e_net_x, e_net_y];
+  }
+   function calculate_net_electric_potential(x_pos, y_pos, f = 0){
+      var k = 8.99 * 10 ** 9;
+    var ep_net_total = 0;
+    for(var i = 0; i < charges.length; i++) {
+      var dy = charges[i].y - y_pos;
+      var dx = charges[i].x - x_pos;
+      var ep_x = k * charges[i].magnitude / Math.pow((dx**2 + dy ** 2),0.5);
+      var ep_y = k * charges[i].magnitude / Math.pow((dx**2 + dy ** 2),0.5);
+      ep_net_total = ep_net_total + ep_x + ep_y;
+    }
+   
+  if (f == 0) document.getElementById("error").innerHTML = "Electric potential at("+ x_pos.toString() + "," + y_pos.toString() +  ") = " + ep_net_total.toString() + " N⋅m^2/C^2";
+    return [ep_net_total];
+  }
+  function get_context() {
+    var canvas = document.getElementById("canvas");
+    return canvas.getContext("2d");
+  }
+
+  function draw() {
+    var context = get_context();
+    var image = new Image();
+    image.src = "arrow.png";
+    image.onload = function () {
+      draw_vector_field(context, image, 800, 800, 50);
+    }
+    setInterval(function() {
+      draw_charges(context)
+    },2500);
+  }
+
+  function draw_vector_field(context, arrow_image, width, height, size) {
+    for(var i = 0; i < width; i = i + width / size) {
+      for(var j = 0; j < height; j = j + height / size) {
+        var electric_force_center = calculate_net_electric_field(i,j, 1);
+        var angle = Math.atan2(electric_force_center[1], electric_force_center[0]);   //radians
+        var degrees = 180*angle/Math.PI;  //degrees
+        var new_angle = Math.PI / 180 * ((-90+Math.round(degrees))%360); //round number, avoid decimal fragments
+        if(electric_force_center[0] == 0 && electric_force_center[1] == 0) { continue; }
+        draw_arrow(context, i, j , width / size, height / size, new_angle);
+      }
+    }
+  }
+
+  function draw_arrow(context, x, y, width, height, angle) {
+    var image = new Image();
+    image.src = "arrow.png";
+    image.onload = function() {
+      context.translate(x,y);
+      context.rotate(angle);
+      context.drawImage(image, -width / 2, -height / 2,width,height);
+      context.rotate(-angle);
+      context.translate(-x,-y);
+    }
+  }
+
+  function draw_charges(context) {
+    for(var i = 0; i < charges.length; i = i + 1) {
+      context.beginPath();
+      context.arc(charges[i].x, charges[i].y, 25, 0, 2 * Math.PI);
+      if(charges[i].magnitude < 0) {
+        context.fillStyle = "blue";
+      } else {
+        context.fillStyle = "red";
+      }
+      context.fill();
+      context.font = "70px Arial"
+      context.fillStyle = "white";
+      context.textAlign = "center";
+      context.fillText((charges[i].magnitude < 0) ? "-" : "+", charges[i].x,charges[i].y + 25);
+    }
+  }
+
+  function setup() {
+  }
+  let input = document.getElementById("input");
+  document.getElementById("btn").addEventListener('click', ()=> {
+    charges = [];
+    let ctx = get_context();
+    ctx.clearRect(0,0, 1200, 1200);
+
+    //add_charge(1.6* 10 ** -19, 50, 50);
+    //add_charge(-2 * 1.6*10**-19,350,50);
+    //add_charge(2 * 1.6*10**-19,350,350);
+    //draw();
+    try {
+   eval(input.value.toString());
+}
+catch(err) {
+
+  document.getElementById("error").innerHTML = err.message;
+}
+   
+  });
+
+  var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 3000); // Change image every 4 seconds
+}
+
+    </script>
+</html>
